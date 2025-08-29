@@ -42,10 +42,9 @@ app.post("/emailer/send", async (req, res) => {
   }
 });
 
-const envPort = process.env.PORT as string;
+app.get('/health', (_req, res) => res.send('ok'));
 
-const port = +envPort || 2302;
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+const port = Number(process.env.PORT) || 1994;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server listening on http://0.0.0.0:${port}`);
 });
